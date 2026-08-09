@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SmartHire — AI Resume Screening Assistant</title>
+<meta name="description" content="AI-powered resume-to-JD matcher and screening assistant with a built-in guidance chatbot.">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+      <span class="navbar-brand fw-bold"><i class="bi bi-stars me-2"></i>SmartHire</span>
+      <a class="btn btn-outline-light btn-sm" href="https://github.com/priyanka-ns/smarthire" target="_blank" rel="noopener"><i class="bi bi-github me-1"></i>Source</a>
+    </div>
+  </nav>
+
+  <header class="hero py-5">
+    <div class="container">
+      <h1 class="fw-bold mb-2">Screen candidates in seconds, not hours.</h1>
+      <p class="lead mb-0">Paste a job description, add resumes, and let SmartHire rank candidates by fit — with skill gaps and tailored interview questions. Stuck? Ask <strong>HireBot</strong>, bottom-right.</p>
+    </div>
+  </header>
+
+  <main class="container py-4">
+    <div id="modeBanner"></div>
+
+    <div class="row g-4">
+      <!-- JD -->
+      <div class="col-lg-6">
+        <div class="card card-soft h-100">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h5 class="mb-0"><i class="bi bi-file-earmark-text me-1"></i>Job Description</h5>
+              <button class="btn btn-sm btn-outline-primary" id="sampleBtn"><i class="bi bi-lightning-charge me-1"></i>Load sample data</button>
+            </div>
+            <textarea id="jd" class="form-control jd" placeholder="Paste the full job description here — title, must-haves, nice-to-haves..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resumes -->
+      <div class="col-lg-6">
+        <div class="card card-soft h-100">
+          <div class="card-body d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h5 class="mb-0"><i class="bi bi-people me-1"></i>Candidates</h5>
+              <button class="btn btn-sm btn-primary" id="addResumeBtn"><i class="bi bi-plus-lg me-1"></i>Add Resume</button>
+            </div>
+            <div id="resumeList" class="flex-grow-1"></div>
+            <button class="btn btn-lg btn-primary mt-3" id="runBtn"><i class="bi bi-magic me-1"></i>Run screening</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div id="resultsWrap" class="mt-4 d-none">
+      <h4 class="mb-3"><i class="bi bi-bar-chart-line me-1"></i>Ranked candidates</h4>
+      <div id="results"></div>
+    </div>
+  </main>
+
+  <footer class="text-center text-muted small py-4">
+    SmartHire — built by <a href="https://github.com/priyanka-ns" target="_blank" rel="noopener">Priyanka Singh</a>.
+    Frontend demo runs client-side; production uses a Spring Boot + Claude API backend.
+  </footer>
+
+  <!-- Add Resume modal -->
+  <div class="modal fade" id="resumeModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Resume</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Candidate name (optional)</label>
+            <input id="resName" class="form-control" placeholder="e.g. Aarav Sharma">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Paste resume text</label>
+            <textarea id="resText" class="form-control" rows="6" placeholder="Paste the resume content..."></textarea>
+          </div>
+          <div class="mb-1">
+            <label class="form-label">…or upload a file (.txt)</label>
+            <input id="resFile" type="file" accept=".txt,.md,text/plain" class="form-control">
+            <div class="form-text">Tip: for the client-side demo, plain text works best.</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn btn-primary" id="saveResumeBtn"><i class="bi bi-check-lg me-1"></i>Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- To connect the real backend, set window.SMARTHIRE_API or use ?api=<url> -->
+  <script>/* window.SMARTHIRE_API = "https://your-backend.onrender.com"; */</script>
+  <script src="js/mockdata.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
