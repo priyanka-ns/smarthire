@@ -10,6 +10,14 @@ fit — with matched skills, gaps, and tailored interview questions. A built-in
 > an API key. Connect the Spring Boot backend (below) with a Claude API key to get
 > **real Claude-powered** semantic matching and chat.
 
+## Screenshots
+
+**Landing — paste a JD and add candidates**
+![SmartHire landing page](docs/screenshots/landing.png)
+
+**Screening results + HireBot assistant**
+![Ranked candidates with fit scores, skill gaps, interview questions, and the HireBot chatbot](docs/screenshots/screening.png)
+
 ---
 
 ## Features
