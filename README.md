@@ -86,21 +86,7 @@ docs/index.html?api=http://localhost:8080
 
 (or uncomment the `window.SMARTHIRE_API` line in `docs/index.html`).
 
-## Deploy the backend (make the live demo "real")
-
-**Option A — Render (Docker blueprint):**
-1. Push this repo to your GitHub (done).
-2. In Render: **New → Blueprint**, select this repo (it reads `render.yaml`).
-3. Set the `ANTHROPIC_API_KEY` secret in the dashboard.
-4. After deploy, copy the service URL and set it as `window.SMARTHIRE_API`
-   in `docs/index.html`, or open `…/smarthire/?api=<your-render-url>`.
-
-**Option B — any Docker host:**
-```bash
-cd backend
-docker build -t smarthire-backend .
-docker run -p 8080:8080 -e ANTHROPIC_API_KEY=sk-ant-... smarthire-backend
-```
+The backend is containerised (`backend/Dockerfile`) and can run on any Docker host.
 
 ## API
 
