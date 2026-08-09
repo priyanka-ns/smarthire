@@ -1,0 +1,16 @@
+# Render blueprint — deploy the SmartHire backend as a Docker web service.
+# In Render: New → Blueprint → connect this repo. Then set ANTHROPIC_API_KEY.
+services:
+  - type: web
+    name: smarthire-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: free
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false          # set this secret in the Render dashboard
+      - key: CLAUDE_MODEL
+        value: claude-opus-4-6
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://priyanka-ns.github.io
